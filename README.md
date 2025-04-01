@@ -1,4 +1,4 @@
-# AYip Events
+# Visionaries777 Events (forked from [AYip's Events](https://github.com/adrianyip-1222/ayip-package-events))
 
 ## 1. Event Bus Setup
 You can choose one of these three ways (but not limited to...) to instantiate an event bus.

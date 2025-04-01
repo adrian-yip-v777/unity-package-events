@@ -1,6 +1,6 @@
 using System;
 
-namespace AYip.Events
+namespace vz777.Events
 {
     public interface IDisposableEvent : IEvent, IDisposable
     {
