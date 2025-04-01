@@ -1,7 +1,7 @@
 {
   "name": "com.vz777.events",
   "version": "0.3.1",
-  "displayName": "Visionaries Events",
+  "displayName": "Events",
   "description": "This is a simplest but robust events package for events and event bus.",
   "unity": "2019.1",
   "documentationUrl": "https://github.com/adrian-yip-v777/unity-package-events",
