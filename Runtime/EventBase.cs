@@ -1,7 +1,7 @@
 using System;
-using AYip.Foundations;
+using vz777.Foundations;
 
-namespace AYip.Events
+namespace vz777.Events
 {
     public abstract class EventBase : DisposableBase, IDisposableEvent
     {
