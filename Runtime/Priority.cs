@@ -1,4 +1,4 @@
-namespace AYip.Events
+namespace vz777.Events
 {
     public enum Priority
     {

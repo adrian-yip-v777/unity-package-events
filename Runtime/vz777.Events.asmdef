@@ -1,8 +1,8 @@
 {
-    "name": "AYip.Events",
+    "name": "vz777.Events",
     "rootNamespace": "",
     "references": [
-        "AYip.Foundation"
+        "vz777.Foundation"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

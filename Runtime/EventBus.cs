@@ -2,10 +2,10 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using AYip.Foundations;
+using vz777.Foundations;
 using UnityEngine;
 
-namespace AYip.Events
+namespace vz777.Events
 {
     /// <summary>
     /// A typical, simplest event bus that handles events at one place to lose couples for your system while using Observer Pattern.
