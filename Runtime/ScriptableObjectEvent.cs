@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace AYip.Events
+namespace vz777.Events
 {
     /// <summary>
     /// Scriptable object event for you to inherit.
