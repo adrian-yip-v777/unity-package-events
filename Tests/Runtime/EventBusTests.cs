@@ -1,5 +1,5 @@
 using System;
-using AYip.Events;
+using vz777.Events;
 using NUnit.Framework;
 
 // Define test interfaces and classes within the test namespace

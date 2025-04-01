@@ -1,4 +1,4 @@
-# AYip Events
+# Visionaries777 Events
 
 ## 1. Event Bus Setup
 You can choose one of these three ways (but not limited to...) to instantiate an event bus.

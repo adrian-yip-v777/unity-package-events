@@ -1,11 +1,11 @@
 {
-    "name": "AYip.Events.Tests",
+    "name": "vz777.Events.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "AYip.Foundation",
-        "AYip.Events"
+        "vz777.Foundation",
+        "vz777.Events"
     ],
     "includePlatforms": [
         "Editor"
