@@ -4,7 +4,7 @@
 You can choose one of these three ways (but not limited to...) to instantiate an event bus.
 ### Event Bus (simplest way)
 ```C#
-// Pass around the eventbus on your own method.
+// Pass around the eventbus reference by yourself.
 var eventBus = new EventBus();
 ```
 
@@ -14,7 +14,7 @@ public class EventBusInstaller : Installer<EventBusInstaller>
 {
     public override void InstallBindings()
     {
-        // You can have multiple even buses
+        // You can have multiple event buses
         // So it can be not in singleton.
         Container.Bind<EventBus>().AsSingle();
     }
@@ -27,7 +27,7 @@ public class FooLifetimeScope : VContainer.Unity.LifetimeScope
 {
     protected override void Configure(IContainerBuilder builder)
     {
-        // You can have multiple even buses
+        // You can have multiple event buses
         // So it can be not in singleton.
         builder.Register<EventBus>(Lifetime.Singleton);
     }
@@ -53,7 +53,7 @@ public class FooEvent : EventBase
 
 ```
 ### Events (readonly struct, parameterless)
-When it comes with struct, you need to handle the ID and timestamp your own.
+When it comes with struct, you need to handle the ID and timestamp on your own.
 ```C#
 public readonly struct FooEvent : IEvent
 {
@@ -159,6 +159,7 @@ public FooSoEvent soEvent;
 
 private void SomeFunction ()
 {
+    ///////////////////////////////////// Usage
     // Simplest object, auto-dispose
     _eventBus.Publish (new FooEvent ());
     _eventBus.Publish (new FooEvent (), autoDispose: true);
@@ -166,6 +167,11 @@ private void SomeFunction ()
     // Simplest object w/o auto-dispose
     _eventBus.Publish (new FooEvent (), false);
     _eventBus.Publish (new FooEvent (), autoDispose: false);
+    
+    // Publish asynchronously 
+    // (experimental feature, not yet supported cancellation)
+    _eventBus.PublishAsync (new FooEvent ());
+    _eventBus.PublishAsync (new FooEvent (), autoDispose: true);
     
     // Readonly struct w/ parameterless
     _eventBus.Publish (FooEvent.Create());
@@ -181,5 +187,16 @@ private void SomeFunction ()
     // ScriptableObject w/ a reference.
     var so2 = Instantiate (soEvent);
     _eventBus.Publish (so2);
+    
+    ////////////////////////////////////////////////////// Return value
+    // Publish function returns a boolean to indicate
+    // whether if the event has any subscribers.
+    var hasSubscribers = _eventBus.Publish (new FooEvent());
+    if (!hasSubscribers)
+    {
+        // Do your stuff...
+        // Release some resources for example.
+    }
+    
 }
 ```

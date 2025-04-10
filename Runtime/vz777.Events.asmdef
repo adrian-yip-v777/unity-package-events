@@ -2,7 +2,8 @@
     "name": "vz777.Events",
     "rootNamespace": "",
     "references": [
-        "vz777.Foundation"
+		"vz777.Foundation",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
