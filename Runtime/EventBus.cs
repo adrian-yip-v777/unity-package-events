@@ -81,7 +81,11 @@ namespace vz777.Events
                 throw new ArgumentNullException(nameof(handler));
 
             var subscriptionType = typeof(TEvent);
-            UnsubscribeInternal(subscriptionType, eventSet => (Action<TEvent>)eventSet.Handler == handler);
+            UnsubscribeInternal(subscriptionType, eventSet =>
+            {
+                var castHandler = eventSet.Handler as Action<TEvent>;
+                return castHandler != null && castHandler == handler;
+            });
         }
         
         /// <summary>
@@ -93,7 +97,11 @@ namespace vz777.Events
                 throw new ArgumentNullException(nameof(handler));
             
             var subscriptionType = typeof(TEvent);
-            UnsubscribeInternal(subscriptionType, eventSet => (Action)eventSet.Handler == handler);
+            UnsubscribeInternal(subscriptionType, eventSet =>
+            {
+                var castHandler = eventSet.Handler as Action;
+                return castHandler != null && castHandler == handler;
+            });
         }
 
         private void UnsubscribeInternal(Type subscriptionType, Func<(object Handler, int), bool> predicate)
