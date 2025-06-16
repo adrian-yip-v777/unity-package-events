@@ -1,4 +1,7 @@
 # Changelog
+## 0.4.1
+- Fixed events not able to unsubscribe if there are different types of subscription
+
 ## 0.4.0
 - Support parameterless handler subscription
 - Fixed an issue on type matching
