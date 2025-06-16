@@ -1,4 +1,9 @@
 # Changelog
+## 0.4.0
+- Support parameterless handler subscription
+- Fixed an issue on type matching
+- Fixed an event not published for the base types.
+
 ## 0.3.2
 - Added back the link.xml.meta
 
