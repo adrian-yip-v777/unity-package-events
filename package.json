@@ -8,7 +8,7 @@
   "changelogUrl": "https://github.com/adrian-yip-v777/unity-package-events/blob/0.4.1/CHANGELOG.md",
   "licensesUrl": "https://github.com/adrian-yip-v777/unity-package-events/blob/0.4.1/LICENSE",
   "dependencies": {
-    "com.vz777.foundation": "0.1.0",
+    "com.vz777.foundation": "1.0.0",
     "com.cysharp.unitask": "2.5.10"
   },
   "keywords": [

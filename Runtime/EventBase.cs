@@ -1,5 +1,5 @@
 using System;
-using vz777.Foundations;
+using vz777.Foundation;
 
 namespace vz777.Events
 {
