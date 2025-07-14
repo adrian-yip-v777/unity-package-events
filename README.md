@@ -1,14 +1,17 @@
 # Visionaries777 Events
+Usually with events, you need to subscribe to them by specifying the type of the events, which create a dependency from the listener and the handler. It harms your project because you need to tight them up.
 
-## 1. Event Bus Setup
-You can choose one of these three ways (but not limited to...) to instantiate an event bus.
-### Event Bus (simplest way)
+`Event Bus` is a common solution for event-driven design which can further greatly de-couple your code from one to another by handling subscriptions at a place as an abstraction layer.
+
+## 1. Set Up the EventBus
+Please refer to any following methods to set up the `EventBus`.
+### Simplest way
 ```C#
 // Pass around the eventbus reference by yourself.
 var eventBus = new EventBus();
 ```
 
-### Event Bus (with dependency injection, Zenject / Extenject)
+### With Zenject / Extenject
 ```C#
 public class EventBusInstaller : Installer<EventBusInstaller>
 {
@@ -21,9 +24,9 @@ public class EventBusInstaller : Installer<EventBusInstaller>
 }
 ```
 
-### Event Bus (with dependency injection, VContainer)
+### With VContainer
 ```C#
-public class FooLifetimeScope : VContainer.Unity.LifetimeScope
+public class FooLifetimeScope : LifetimeScope
 {
     protected override void Configure(IContainerBuilder builder)
     {
@@ -36,9 +39,9 @@ public class FooLifetimeScope : VContainer.Unity.LifetimeScope
 
 ---
 ## 2. Events Setup
-Your custom events must inherit IEvent to work. It basically stores the event ID and timestamp for general purpose.
+Your custom events must inherit `IEvent` to work. It basically stores the event ID and timestamp for general purpose.
 
-**EventBase** is a disposable base class that does the ID and timestamp assignment for you.
+`EventBase` is a disposable base class that does the ID and timestamp assignment for you.
 ### Events (disposable object, simplest)
 ```C#
 public class FooEvent : EventBase
@@ -53,7 +56,7 @@ public class FooEvent : EventBase
 
 ```
 ### Events (readonly struct, parameterless)
-When it comes with struct, you need to handle the ID and timestamp on your own.
+When it comes to structs, you need to handle the ID and timestamp on your own.
 ```C#
 public readonly struct FooEvent : IEvent
 {
@@ -73,7 +76,7 @@ public readonly struct FooEvent : IEvent
     public DateTime Timestamp { get; }
 }
 ```
-### Events (readonly struct, with parameters)
+### Events (readonly struct with parameters)
 ```C#
 public readonly struct FooEvent : IEvent
 {   
@@ -105,7 +108,22 @@ public class FooSoEvent : ScriptablObjectEvent
     }
 }
 ```
+### Use with Unity Analytics Events
+You can mix with other event systems by inheriting the interface of `IEvent`.
+```C#
+public class UnityAnalyticsEvent : Unity.Services.Analytics.Event, IEvent
+    {
+        public UnityAnalyticsEvent(string someParameterString) : base(name: "unityEventName")
+        {
+            SomeParameterString = someParameterString
+            SetParameter("unityEventParameter", someParameterString);
+        }
 
+        public Guid Id { get; } = Guid.NewGuid();
+        public DateTime Timestamp { get; } = DateTime.Now;
+        public string SomeParameterString { get; }
+    } 
+```
 ---
 ## 3. Event Subscription
 
@@ -147,7 +165,7 @@ private void OnIFooPublished (IFooEvent eventData) { }
 ```
 
 ---
-## Event Publish
+## 4. Event Publish
 
 ```C#
 // Get your event bus from somewhere.
